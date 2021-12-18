@@ -1,0 +1,6 @@
+Flask
+pymongo[srv]
+Flask-PyMongo
+flask-cors
+flask-mqtt
+paho-mqtt
