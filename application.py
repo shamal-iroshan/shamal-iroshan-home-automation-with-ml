@@ -12,7 +12,7 @@ from datetime import datetime
 
 
 application = Flask(__name__)
-application.config["MONGO_URI"] = "mongodb+srv://shamal:CUzcTxAqUVRW8Xan@cluster0.4brhm.mongodb.net/ijse_final?authSource=admin&replicaSet=atlas-zn6p9b-shard-0&w=majority&readPreference=primary&appname=MongoDB%20Compass&retryWrites=true&ssl=true"
+application.config["MONGO_URI"] = ""
 mongodb_client = PyMongo(application)
 db = mongodb_client.db
 cors = CORS(application)
@@ -26,12 +26,12 @@ application.config['MQTT_REFRESH_TIME'] = 1.0
 application.config['MQTT_KEEPALIVE'] = 5
 application.config['MQTT_TLS_ENABLED'] = False
 
-application.config['AWS_COGNITO_DOMAIN'] = "https://test-auth-shamal.auth.ap-southeast-1.amazoncognito.com"
-application.config['AWS_DEFAULT_REGION'] = "ap-southeast-1"
-application.config['AWS_COGNITO_USER_POOL_ID'] = "ap-southeast-1_jJx01wHk5"
-application.config['AWS_COGNITO_USER_POOL_CLIENT_ID'] = "ftu11co4aq7mms06in4mob62n"
-application.config['AWS_COGNITO_USER_POOL_CLIENT_SECRET'] = "oj806ch22k9jppiris68ak157vmt676tsdjce9rn8l6k5hc3gb8"
-application.config['AWS_COGNITO_REDIRECT_URL'] = "http://localhost:5000/home"
+application.config['AWS_COGNITO_DOMAIN'] = ""
+application.config['AWS_DEFAULT_REGION'] = ""
+application.config['AWS_COGNITO_USER_POOL_ID'] = ""
+application.config['AWS_COGNITO_USER_POOL_CLIENT_ID'] = ""
+application.config['AWS_COGNITO_USER_POOL_CLIENT_SECRET'] = ""
+application.config['AWS_COGNITO_REDIRECT_URL'] = ""
 mqtt = Mqtt(application)
 aws_auth = AWSCognitoAuthentication(application)
 
@@ -160,24 +160,6 @@ def route_edit_device():
 
 # =================================================================================
 
-# @mqtt.on_connect()
-# def handle_connect(client, userdata, flags, rc):
-#     mqtt.subscribe('home/mytopic')
-
-# @mqtt.on_message()
-# def handle_mqtt_message(client, userdata, message):
-#     data = dict(
-#         topic=message.topic,
-#         payload=message.payload.decode()
-#     )
-#     print(data)
-
-# @application.route('/mqtt-publish', methods=["POST"])
-# @cross_origin()
-# def route_mqtt_publish():
-#     if request.method == "POST":
-#         mqtt.publish('home/mytopic', 'this is my message')
-#     return make_response("published", 200)
 
 if __name__ == '__main__':
     application.run(debug=False)
