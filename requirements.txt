@@ -4,3 +4,7 @@ Flask-PyMongo
 flask-cors
 flask-mqtt
 paho-mqtt
+Flask-AWSCognito
+flask-jwt-extended
+APScheduler
+paho-mqtt
