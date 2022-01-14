@@ -51,35 +51,35 @@ scheduler.start()
 # Shut down the scheduler when exiting the app
 atexit.register(lambda: scheduler.shutdown())
 
-@application.route('/home', methods=["GET"])
-def route_home():
-    if request.args:
-        try:
-            access_token = aws_auth.get_access_token(request.args)
-            if access_token:
-                return render_template('index.html')
-            else: 
-                return "Error"
-        except:
-            return "Error"
+# @application.route('/home', methods=["GET"])
+# def route_home():
+#     if request.args:
+#         try:
+#             access_token = aws_auth.get_access_token(request.args)
+#             if access_token:
+#                 return render_template('index.html')
+#             else: 
+#                 return "Error"
+#         except:
+#             return "Error"
 
-    else:
-        return "Error"
+#     else:
+#         return "Error"
 
 @application.route('/')
 def sign_in():
-    return redirect(aws_auth.get_sign_in_url())
+    return render_template('index.html')
 
-@application.route('/aws_cognito_redirect')
-def aws_cognito_redirect():
-    access_token = aws_auth.get_access_token(request.args)
-    return jsonify({'access_token': access_token})
+# @application.route('/aws_cognito_redirect')
+# def aws_cognito_redirect():
+#     access_token = aws_auth.get_access_token(request.args)
+#     return jsonify({'access_token': access_token})
 
-@application.route('/a')
-@aws_auth.authentication_required
-def index():
-    claims = aws_auth.claims # or g.cognito_claims
-    return jsonify({'claims': claims})
+# @application.route('/a')
+# @aws_auth.authentication_required
+# def index():
+#     claims = aws_auth.claims # or g.cognito_claims
+#     return jsonify({'claims': claims})
 
 # ========================================================
 
